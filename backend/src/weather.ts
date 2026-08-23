@@ -182,9 +182,64 @@ export class SingaporeWeatherClient {
 
   async getCurrentWeather(latitude: number, longitude: number): Promise<WeatherSnapshot> {
     const forecastPayload = await this.fetchLatestForecastPayload().catch(() => null);
-    return forecastPayload
+    const baseSnapshot = forecastPayload
       ? this.snapshotFromPayload(forecastPayload, latitude, longitude)
       : this.emptyForecastSnapshot();
+
+    const [
+      temperature,
+      humidity,
+      rainfall,
+      windSpeed,
+      windDirection,
+      uv,
+      airQuality,
+      twentyFourHour,
+      fourDay,
+    ] = await Promise.all([
+      this.safeNearestReading('air-temperature', latitude, longitude),
+      this.safeNearestReading('relative-humidity', latitude, longitude),
+      this.safeNearestReading('rainfall', latitude, longitude),
+      this.safeNearestReading('wind-speed', latitude, longitude),
+      this.safeNearestReading('wind-direction', latitude, longitude),
+      this.fetchUvIndex().catch(() => null),
+      this.fetchAirQuality(latitude, longitude).catch(() => null),
+      this.fetchTwentyFourHourForecast(latitude, longitude).catch(() => null),
+      this.fetchFourDayForecast().catch(() => null),
+    ]);
+
+    return {
+      ...baseSnapshot,
+      temperature_c: temperature.value,
+      humidity_percent: humidity.value,
+      rainfall_mm: rainfall.value,
+      wind_speed_knots: windSpeed.value,
+      wind_direction_degrees: windDirection.value,
+      forecast_low_c: twentyFourHour?.low ?? baseSnapshot.forecast_low_c,
+      forecast_high_c: twentyFourHour?.high ?? baseSnapshot.forecast_high_c,
+      forecast_periods: twentyFourHour?.periods ?? baseSnapshot.forecast_periods,
+      uv_index: uv?.value ?? baseSnapshot.uv_index,
+      psi_twenty_four_hourly: airQuality?.psi ?? baseSnapshot.psi_twenty_four_hourly,
+      pm25_one_hourly: airQuality?.pm25 ?? baseSnapshot.pm25_one_hourly,
+      air_quality_region: airQuality?.region ?? baseSnapshot.air_quality_region,
+      daily_forecast: fourDay?.days ?? baseSnapshot.daily_forecast,
+    };
+  }
+
+  private async safeNearestReading(
+    endpoint:
+      | 'air-temperature'
+      | 'relative-humidity'
+      | 'rainfall'
+      | 'wind-speed'
+      | 'wind-direction',
+    latitude: number,
+    longitude: number,
+  ): Promise<{ value: number | null; timestamp: string | null }> {
+    return this.fetchNearestReading(endpoint, latitude, longitude).catch(() => ({
+      value: null,
+      timestamp: null,
+    }));
   }
 
   async fetchLatestForecastPayload(): Promise<ForecastPayload> {

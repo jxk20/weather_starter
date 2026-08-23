@@ -1,6 +1,7 @@
 import { useStore, useSelectedLocation } from '../state/store';
 import { LocationIcon, RefreshIcon } from './icons';
 import { HourlyStrip } from './HourlyStrip';
+import { MapCard } from './MapCard';
 import { TenDayForecast } from './TenDayForecast';
 import { TileGrid } from './Tiles';
 import { formatTemperature, formatTime } from './format';
@@ -64,6 +65,7 @@ export function Hero() {
         <HourlyStrip periods={selected.weather?.forecast_periods} />
         <TenDayForecast weather={selected.weather} />
         <TileGrid weather={selected.weather} />
+        <MapCard />
 
         <footer className="mt-2 flex flex-col items-center gap-3 pb-8 text-xs text-white/55">
           <button
