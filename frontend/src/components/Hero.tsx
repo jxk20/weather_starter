@@ -15,8 +15,8 @@ export function Hero() {
       <main className="flex flex-1 flex-col p-10">
         <div className="flex flex-1 items-center justify-center">
           <div className="text-center">
-            <p className="text-2xl font-light text-white/85">Select a location</p>
-            <p className="mt-2 text-sm text-white/60">
+            <p className="text-2xl font-light text-[color:var(--text-2)]">Select a location</p>
+            <p className="mt-2 text-sm text-[color:var(--text-4)]">
               Add a Singapore coordinate from the sidebar to see its weather.
             </p>
           </div>
@@ -39,27 +39,29 @@ export function Hero() {
 
   return (
     <main className="flex-1 overflow-y-auto">
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 p-6 lg:p-8">
+      <div className="mx-auto flex max-w-5xl flex-col gap-[var(--gap-section)] p-6 lg:p-8">
         <header className="flex flex-col items-center pt-6 pb-2 text-center">
           {isHome && (
-            <div className="mb-2 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
+            <div className="mb-2 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--text-3)]">
               <LocationIcon className="h-3 w-3" />
               <span>Home</span>
             </div>
           )}
-          <h1 className="text-4xl font-light leading-tight text-white">{area}</h1>
-          <div className="mt-2 text-[6.5rem] font-extralight leading-none tracking-tight text-white">
+          <h1 className="text-4xl font-light leading-tight text-[color:var(--text-1)]">{area}</h1>
+          <div className="mt-2 text-[6.5rem] font-extralight leading-none tracking-tight text-[color:var(--text-1)]">
             {temperature}
           </div>
-          <div className="mt-1 text-lg text-white/90">{condition}</div>
-          <div className="mt-1 text-sm text-white/70 tabular-nums">
+          <div className="mt-1 text-lg text-[color:var(--text-2)]">{condition}</div>
+          <div className="mt-1 text-sm text-[color:var(--text-3)] tabular-nums">
             H:{high} L:{low}
           </div>
-          {observed && <div className="mt-3 text-xs text-white/55">Updated {observed}</div>}
+          {observed && (
+            <div className="mt-3 text-xs text-[color:var(--text-4)]">Updated {observed}</div>
+          )}
         </header>
 
         {validPeriod && (
-          <p className="px-2 pb-1 text-center text-xs text-white/65">{validPeriod}</p>
+          <p className="px-2 pb-1 text-center text-xs text-[color:var(--text-4)]">{validPeriod}</p>
         )}
 
         <HourlyStrip periods={selected.weather?.forecast_periods} />
@@ -67,12 +69,12 @@ export function Hero() {
         <TileGrid weather={selected.weather} />
         <MapCard />
 
-        <footer className="mt-2 flex flex-col items-center gap-3 pb-8 text-xs text-white/55">
+        <footer className="mt-2 flex flex-col items-center gap-3 pb-8 text-xs text-[color:var(--text-4)]">
           <button
             type="button"
             onClick={() => void refresh(selected.id)}
             disabled={isRefreshing}
-            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur-xl hover:bg-white/[0.14] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex items-center gap-1.5 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-3 py-1.5 text-xs font-medium text-[color:var(--text-2)] backdrop-blur-[var(--blur-card)] hover:bg-[color:var(--surface-strong)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <RefreshIcon className={`h-3.5 w-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
             <span>{isRefreshing ? 'Refreshing…' : 'Refresh'}</span>
