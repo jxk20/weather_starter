@@ -14,14 +14,14 @@ export function MapCard() {
 
   return (
     <>
-      <section className="flex flex-col gap-3 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.08] p-4 backdrop-blur-xl">
-        <header className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">
+      <section className="flex flex-col gap-3 overflow-hidden rounded-[var(--radius-card)] border border-[color:var(--border)] bg-[color:var(--surface)] p-[var(--space-card)] backdrop-blur-[var(--blur-card)]">
+        <header className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--text-4)]">
           <span>Map</span>
           <button
             type="button"
             onClick={() => setExpanded(true)}
             aria-label="Expand map"
-            className="flex h-6 w-6 items-center justify-center rounded-full text-white/60 transition hover:bg-white/15 hover:text-white/90"
+            className="flex h-6 w-6 items-center justify-center rounded-full text-[color:var(--text-4)] transition hover:bg-[color:var(--surface-strong)] hover:text-[color:var(--text-2)]"
           >
             <ExpandIcon className="h-3.5 w-3.5" />
           </button>
