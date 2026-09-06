@@ -4,7 +4,8 @@ import { formatTemperature } from './format';
 
 export function buildLocationIcon(location: Location, isSelected: boolean): L.DivIcon {
   const temperature = formatTemperature(location.weather?.temperature_c);
-  const label = location.weather?.area || `${location.latitude.toFixed(2)}, ${location.longitude.toFixed(2)}`;
+  const label =
+    location.weather?.area || `${location.latitude.toFixed(2)}, ${location.longitude.toFixed(2)}`;
   const pinColor = isSelected ? '#ffffff' : 'rgba(255,255,255,0.75)';
 
   return L.divIcon({

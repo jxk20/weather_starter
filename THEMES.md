@@ -27,6 +27,7 @@ flow, refresh behavior, or the backend API. Themes are purely presentational.
 ## The themes
 
 ### Apple (default)
+
 The original Weather Starter design, preserved exactly as the baseline theme.
 
 - **Description:** Soft, glassy iOS-style weather app look — a blue-grey
@@ -41,6 +42,7 @@ The original Weather Starter design, preserved exactly as the baseline theme.
 - **Layout density:** Comfortable, matches the original shipped design.
 
 ### Monochrome
+
 A clean, flat, light theme for a minimal/high-contrast reading experience.
 
 - **Description:** Black-on-white editorial look with no gradients or blur.
@@ -57,6 +59,7 @@ A clean, flat, light theme for a minimal/high-contrast reading experience.
   maximum contrast on the selected state.
 
 ### Neon Nightfall
+
 A dark, cyberpunk-inspired theme with saturated glow accents.
 
 - **Description:** Near-black background with cyan and magenta neon glows,
@@ -77,6 +80,7 @@ A dark, cyberpunk-inspired theme with saturated glow accents.
   near-black text for contrast.
 
 ### Storm Watch
+
 A utilitarian, high-alert dark theme with an orange warning accent.
 
 - **Description:** Slate-grey/charcoal dark theme with a sharp, condensed,

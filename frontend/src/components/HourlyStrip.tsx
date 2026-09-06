@@ -50,9 +50,7 @@ export function HourlyStrip({ periods = [] }: HourlyStripProps) {
               ) : (
                 <CloudIcon className="h-7 w-7 text-[color:var(--text-2)]" />
               )}
-              <div className="text-xs leading-snug text-[color:var(--text-2)]">
-                {slot.forecast}
-              </div>
+              <div className="text-xs leading-snug text-[color:var(--text-2)]">{slot.forecast}</div>
             </div>
           );
         })}

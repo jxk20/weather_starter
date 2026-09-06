@@ -1,0 +1,10 @@
+node_modules
+dist
+drizzle
+*.db
+*.db-shm
+*.db-wal
+backend/logs
+docs/.astro
+docs/dist
+package-lock.json

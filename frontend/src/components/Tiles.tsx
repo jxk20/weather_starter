@@ -188,7 +188,9 @@ export function UVTile({ weather }: WeatherProps) {
         max={11}
         gradientClass="bg-gradient-to-r from-emerald-400 via-yellow-300 via-orange-400 to-fuchsia-500"
       />
-      <p className="mt-3 text-xs leading-snug text-[color:var(--text-3)]">Latest nationwide UVI reading.</p>
+      <p className="mt-3 text-xs leading-snug text-[color:var(--text-3)]">
+        Latest nationwide UVI reading.
+      </p>
     </TileShell>
   );
 }
@@ -213,7 +215,9 @@ export function PrecipitationTile({ weather }: WeatherProps) {
         {formatNumber(weather?.rainfall_mm, 1)} mm
       </div>
       <div className="mt-1 text-sm text-[color:var(--text-2)]">Latest reading</div>
-      <p className="mt-3 text-xs leading-snug text-[color:var(--text-3)]">Nearest realtime rainfall station.</p>
+      <p className="mt-3 text-xs leading-snug text-[color:var(--text-3)]">
+        Nearest realtime rainfall station.
+      </p>
     </TileShell>
   );
 }
@@ -224,7 +228,9 @@ export function HumidityTile({ weather }: WeatherProps) {
       <div className="text-4xl font-light leading-none tabular-nums text-[color:var(--text-2)]">
         {formatNumber(weather?.humidity_percent)}%
       </div>
-      <p className="mt-3 text-xs leading-snug text-[color:var(--text-3)]">Nearest realtime humidity station.</p>
+      <p className="mt-3 text-xs leading-snug text-[color:var(--text-3)]">
+        Nearest realtime humidity station.
+      </p>
     </TileShell>
   );
 }

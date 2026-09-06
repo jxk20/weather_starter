@@ -11,6 +11,7 @@
     "doctor": "node scripts/doctor.mjs",
     "reset": "node scripts/reset.mjs",
     "test": "vitest run",
+    "format": "prettier --write .",
     "test:watch": "vitest",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate"

@@ -4,7 +4,7 @@
 
 `createApp(options)` accepts an injectable `weatherClient` and toggles for `serveFrontend`/`enableRequestLogging` — this is how `locations.test.ts` runs the router against a fake weather client without hitting the real API or starting Vite.
 
-**Snapshot-not-timeseries data model.** Each row in `locations` (SQLite via `backend/weather.db`) holds one lat/lon plus the *latest* weather snapshot flattened into columns (`backend/src/schema.ts`). There is no history table. Creating a location immediately fetches and stores one snapshot; refreshing overwrites it in place. (Feature Task 8 in the README describes adding a real time-series/readings table if that's ever needed.)
+**Snapshot-not-timeseries data model.** Each row in `locations` (SQLite via `backend/weather.db`) holds one lat/lon plus the _latest_ weather snapshot flattened into columns (`backend/src/schema.ts`). There is no history table. Creating a location immediately fetches and stores one snapshot; refreshing overwrites it in place. (Feature Task 8 in the README describes adding a real time-series/readings table if that's ever needed.)
 
 **Drizzle over `node:sqlite`, not better-sqlite3.** `backend/src/db.ts` wires Drizzle's `sqlite-proxy` driver over Node's built-in `node:sqlite` (`DatabaseSync`), with a hand-rolled `sqliteCallback` translating Drizzle's run/get/all/values calls into `node:sqlite` statement calls. Migrations run automatically at import time via `drizzle-orm/sqlite-proxy/migrator` against `backend/drizzle/*.sql`, so `db.ts` has import-time side effects — importing it opens/migrates the DB immediately. Schema changes must go through `npm run db:generate` (writes new SQL under `backend/drizzle/`) before `npm run db:migrate` picks them up.
 

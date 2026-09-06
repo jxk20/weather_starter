@@ -105,7 +105,11 @@ export async function updateWeather(
 }
 
 export async function deleteLocation(id: number): Promise<boolean> {
-  const result = await db.delete(locations).where(eq(locations.id, id)).returning({ id: locations.id }).get();
+  const result = await db
+    .delete(locations)
+    .where(eq(locations.id, id))
+    .returning({ id: locations.id })
+    .get();
   return result !== undefined;
 }
 

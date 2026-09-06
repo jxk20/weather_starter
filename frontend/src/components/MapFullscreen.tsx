@@ -51,7 +51,7 @@ export function MapFullscreen({ open, onClose }: MapFullscreenProps) {
           style={{ height: '100%', width: '100%' }}
         >
           <TileLayer
-            attribution='&copy; OpenStreetMap contributors'
+            attribution="&copy; OpenStreetMap contributors"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <MapFitBounds locations={locations} />
